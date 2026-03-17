@@ -1,4 +1,4 @@
-const isSweetShopOpen = false;
+const isSweetShopOpen = true;
 
 const myPromise = new Promise(
     (resolve, reject) => {
@@ -6,7 +6,12 @@ const myPromise = new Promise(
         setTimeout(() => { 
             if (isSweetShopOpen) {
                 console.log("The sweet shop is open!");
-                resolve();
+                resolve(
+                    {
+                        name:"Chocolate",
+                        price: 500
+                    }
+                );
             } else {
                 console.log("The sweet shop is closed!");
                 reject();
@@ -16,7 +21,11 @@ const myPromise = new Promise(
 );
 
 myPromise.then(
-    ()=>{ console.log("I am going to buy some sweets!"); }
+    (result)=>{ 
+        console.log(`I am going to buy ${result.name} for ${result.price} dollars!`);
+        console.log("I am going to buy some sweets!"); }
 ).catch(
-    ()=> { console.log("I am going to buy some sweets online!"); }
+    (error)=> { 
+        console.log(error);
+        console.log("I am going to buy some sweets online!"); }
 );
